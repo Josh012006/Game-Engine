@@ -6,16 +6,6 @@ namespace Josh {
         // Creating the window
         _data->window.create(sf::VideoMode(width, height), title, sf::Style::Close | sf::Style::Titlebar);
 
-        // Set the game's icon
-        _data->assets.LoadTexture("Game Icon", GAME_ICON_FILEPATH);
-        sf::Texture icon_texture = this->_data->assets.GetTexture("Game Icon");
-        sf::Image icon = icon_texture.copyToImage();
-
-        _data->window.setIcon(GAME_ICON_WIDTH, GAME_ICON_HEIGHT, icon.getPixelsPtr());
-
-        // Implementing our first state
-        _data->machine.AddState(StateRef (new SplashState(this->_data)));
-
         // Running the game
         this->Run();
     }
@@ -27,19 +17,6 @@ namespace Josh {
         float currentTime = this->_clock.getElapsedTime().asSeconds();
 
         float accumulator = 0.0f;
-
-        // Load the cursor's sprite and change the cursor
-        this->_data->assets.LoadTexture("Cursor sprite", CURSOR_SPRITE);
-        sf::Texture cursorTexture = this->_data->assets.GetTexture("Cursor sprite");
-
-        sf::Cursor cursor;
-        sf::Vector2<unsigned int> size(50, 50);
-        sf::Vector2<unsigned int> hotspot(14, 6);
-
-        // Change the cursor
-        if (cursor.loadFromPixels(cursorTexture.copyToImage().getPixelsPtr(), size, hotspot)) {
-            this->_data->window.setMouseCursor(cursor);
-        }
 
         // Managing the game loop
         while(this->_data->window.isOpen()) {

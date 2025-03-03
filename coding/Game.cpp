@@ -1,5 +1,4 @@
 #include "headers/Game.hpp"
-#include "headers/SplashState.hpp"
 #include "headers/DEFINITIONS.hpp"
 
 namespace Josh {
